@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="style.css">
 	</head>
 	<body ng-controller="tttController">
-		<h3>{{"Player " + player}}</h3>
+		<label><input type="checkbox" ng-model="p1"> Player 1</label>
+		<label><input type="checkbox" ng-model="p2"> Player 2</label>
 		<table>
 			<tr>
 				<td ng-click="play(0,0)">{{game.board[0][0]}}</td>

@@ -14,23 +14,11 @@ app.controller('tttController', ['$scope', '$firebase', function($scope, $fireba
 	// make variable 'g' same as $scope.game (easier to type)
 	var g = $scope.game;
 
-	// Initialization code.  Check if game needs player 2 and then assign
-	// player accordingly.  If player 1, initialize game board.
-	$scope.player = '';
-	g.$loaded().then(function() {
-		if(g.needPlayerTwo) {
-			$scope.player = 2;
-			g.needPlayerTwo = false;
-		}
-		else {
-			$scope.player = 1;
-			g.needPlayerTwo = true;
-			g.board = [['','',''],['','',''],['','','']];
-			g.playerTurn = 1;
-			g.winner = false;
-		}
-		g.$save();
-	});
+	// Game Initialization  
+	g.board = [['','',''],['','',''],['','','']];
+	g.playerTurn = 1;
+	g.winner = false;
+	g.$save();
 
 
 	// Play function is called whenever player clicks on tictactoe board
@@ -42,11 +30,11 @@ app.controller('tttController', ['$scope', '$firebase', function($scope, $fireba
 			return;
 		}
 
-		if(g.board[row][col] === '' && $scope.player === 1 && g.playerTurn === 1) {
+		if(g.board[row][col] === '' && $scope.p1 && g.playerTurn === 1) {
 			g.board[row][col] = 'X';
 			g.playerTurn = 2;
 		}
-		else if(g.board[row][col] === '' && $scope.player === 2 && g.playerTurn === 2) {
+		else if(g.board[row][col] === '' && $scope.p2 && g.playerTurn === 2) {
 			g.board[row][col] = 'O';
 			g.playerTurn = 1;
 		}
